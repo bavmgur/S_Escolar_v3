@@ -1,6 +1,6 @@
-# Vuelibra
+# S_Escolar_v3
 
-> Aplicacion de reserva de libros con Nuxt y Vue
+> Aplicacion de un Portal Escolar
 
 ## Build Setup
 
