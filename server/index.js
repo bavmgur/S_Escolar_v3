@@ -1,6 +1,6 @@
 const express = require('express')
-const bodyParser = require('body-parser')
-const session = require('express-session')
+//const bodyParser = require('body-parser')
+//const session = require('express-session')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 const app = express()

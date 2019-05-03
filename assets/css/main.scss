@@ -1,3 +1,5 @@
+$color-back-1: #f6f7fb;
+
 *,
 *::after,
 *::before {
@@ -13,4 +15,5 @@ html {
 body {
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
+  background-color: $color-back-1;
 }
