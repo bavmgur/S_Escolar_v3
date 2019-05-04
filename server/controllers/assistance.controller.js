@@ -15,9 +15,16 @@ const Op = Sequelize.Op
 // }
 
 function createAssistance(req, res) {
+
+    let date = new Date()
+
     const body = req.body
 
-    Assistance.create(body)
+    Assistance.create({
+            hour: date.getHours() + '-' + date.getMinutes(),
+            state: body.state,
+            StudentId: body.StudentId
+        })
         .then(assistance => {
             res.send(assistance['dataValues'])
         })
