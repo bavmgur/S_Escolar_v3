@@ -1,5 +1,4 @@
 // Importamos las rutas
-const HomeRoutes = require('./home.routes')
 const StudentRoutes = require('./student.routes')
 const SchoolYearRoutes = require('./schoolyear.routes')
 const ClassroomRoutes = require('./classroom.routes')
@@ -9,12 +8,11 @@ const AssistanceRoutes = require('./assistance.routes')
 
 module.exports = app => {
     // Aqui van las rutas para exportar
-    app.use('/', HomeRoutes)
-    app.use('/student', StudentRoutes)
-    app.use('/classroom', ClassroomRoutes)
-    app.use('/schoolyear', SchoolYearRoutes)
-    app.use('/secretary', SecretaryRoutes)
-    app.use('/assistance', AssistanceRoutes)
+    app.use('api/student', StudentRoutes)
+    app.use('api/classroom', ClassroomRoutes)
+    app.use('api/schoolyear', SchoolYearRoutes)
+    app.use('api/secretary', SecretaryRoutes)
+    app.use('api/assistance', AssistanceRoutes)
 
-    app.use('/login', LoginRoutes)
+    app.use('api/login', LoginRoutes)
 }
