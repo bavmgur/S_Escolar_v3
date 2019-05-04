@@ -1,4 +1,9 @@
 const express = require('express')
+<<<<<<< HEAD
+=======
+//const bodyParser = require('body-parser')
+//5const session = require('express-session')
+>>>>>>> frontend
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 
