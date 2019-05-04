@@ -5,7 +5,7 @@ import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
 const datepickerOptions = {
   dateLabelFormat: 'dddd, MMMM D, YYYY',
   days: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'],
-  daysShort: ['Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab', 'Domi'],
+  daysShort: ['Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab', 'Dom'],
   monthNames: [
     'Enero',
     'Febrero',
