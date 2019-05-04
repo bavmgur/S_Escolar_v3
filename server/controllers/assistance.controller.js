@@ -1,18 +1,34 @@
-const { Assistance, Sequelize, sequelize } = require('../models/index')
+const { Assistance, Student, Sequelize, sequelize } = require('../models/index')
 const Op = Sequelize.Op
 
 
+async function setAssistances(req, res) {
 
+    let date = new Date()
 
-// function getAllStudents(req, res) {
-//     Assistance.findAll()
-//         .then(students => {
-//             res.send(students)
-//         })
-//         .catch(err => {
-//             if (err) throw err
-//         })
-// }
+    students = await Student.findAll({
+            raw: true
+        })
+        .catch(err => {
+            if (err) throw err
+        })
+
+    students.map(async item => {
+
+        await Assistance.create({
+            hour: date.getHours() + ':' + date.getMinutes(),
+            state: 0,
+            StudentId: item.id
+        }).catch(err => {
+            console.log(err)
+            if (err) throw err
+        })
+
+    })
+
+    res.json(students)
+}
+
 
 function createAssistance(req, res) {
 
@@ -21,7 +37,7 @@ function createAssistance(req, res) {
     const body = req.body
 
     Assistance.create({
-            hour: date.getHours() + '-' + date.getMinutes(),
+            hour: date.getHours() + ':' + date.getMinutes(),
             state: body.state,
             StudentId: body.StudentId
         })
@@ -33,11 +49,12 @@ function createAssistance(req, res) {
 }
 
 async function getAllAssistancesByStudent(req, res) {
+
+    const defaultHour = [11, 33]
+
     const query = req.query
-    console.log(query)
     let assistances = []
     let queryConfig = {}
-
 
     if (!query.cod_alumno) {
         return res.status(404).json({
@@ -61,9 +78,7 @@ async function getAllAssistancesByStudent(req, res) {
     }
 
     assistances = await Assistance.findAndCountAll({
-            attributes: [
-                'id', 'hour', 'state', [sequelize.fn('date_format', sequelize.col('createdAt'), '%Y-%m-%d'), 'date']
-            ],
+            attributes: ['id', 'hour', 'state', ['createdAt', 'date']],
             where: queryConfig,
             limit: 10,
             offset: (query.page || 1) * 10 - 10,
@@ -72,8 +87,19 @@ async function getAllAssistancesByStudent(req, res) {
         .catch(err => {
             if (err) throw err
         })
+    assistances.rows.map(item => {
 
-    assistances.rows.map(item => item.state = (item.state == 0 ? "Falto" : "Asistio"))
+        let hourArray = item.hour.toString().split(':')
+        item.state = (item.state == 0 ? "Falto" : "Asistio")
+        item['arrived'] = (defaultHour[0] < hourArray[0] || defaultHour[1] < hourArray[1] ? "Tarde" : "Temprano")
+    })
+
+    if (assistances.count == 0) {
+        return res.status(404).json({
+            ok: false,
+            message: 'No existen datos para esta busqueda'
+        })
+    }
 
     res.status(200).json({
         ok: true,
@@ -100,5 +126,6 @@ async function getAllAssistancesByStudent(req, res) {
 
 module.exports = {
     createAssistance,
-    getAllAssistancesByStudent
+    getAllAssistancesByStudent,
+    setAssistances
 }
