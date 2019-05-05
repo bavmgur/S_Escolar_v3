@@ -1,4 +1,7 @@
 const { Assistance, Student, Sequelize, sequelize } = require('../models/index')
+
+const respHandler = require('../utils/resp-handler')
+
 const Op = Sequelize.Op
 
 
@@ -10,7 +13,7 @@ async function setAssistances(req, res) {
             raw: true
         })
         .catch(err => {
-            if (err) throw err
+            respHandler.internalServerError(err)
         })
 
     students.map(async item => {
@@ -20,13 +23,12 @@ async function setAssistances(req, res) {
             state: 0,
             StudentId: item.id
         }).catch(err => {
-            console.log(err)
-            if (err) throw err
+            respHandler.internalServerError(err)
         })
 
     })
 
-    res.json(students)
+    respHandler.success(res, students)
 }
 
 
@@ -42,7 +44,10 @@ function createAssistance(req, res) {
             StudentId: body.StudentId
         })
         .then(assistance => {
-            res.send(assistance['dataValues'])
+            respHandler.success(res, assistance['dataValues'])
+        })
+        .catch(err => {
+            respHandler.internalServerError(err)
         })
 
 
@@ -57,10 +62,7 @@ async function getAllAssistancesByStudent(req, res) {
     let queryConfig = {}
 
     if (!query.cod_alumno) {
-        return res.status(404).json({
-            ok: false,
-            message: 'No existe un alumno con este id'
-        })
+        respHandler.notFound(res)
     }
 
     queryConfig = {
@@ -85,7 +87,7 @@ async function getAllAssistancesByStudent(req, res) {
             raw: true
         })
         .catch(err => {
-            if (err) throw err
+            respHandler.internalServerError(res, err)
         })
     assistances.rows.map(item => {
 
@@ -95,16 +97,10 @@ async function getAllAssistancesByStudent(req, res) {
     })
 
     if (assistances.count == 0) {
-        return res.status(404).json({
-            ok: false,
-            message: 'No existen datos para esta busqueda'
-        })
+        respHandler.notFound(res)
     }
 
-    res.status(200).json({
-        ok: true,
-        assistances
-    })
+    respHandler.success(res, assistances)
 }
 
 // function deleteStudent(req, res) {
