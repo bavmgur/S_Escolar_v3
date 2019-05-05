@@ -1,36 +1,53 @@
 <template>
+  <div class="pb-5">
   <table class="mb-5 table table-hover auxiliar-assistance__table">
     <thead>
       <tr class="text-white">
         <th>DNI</th>
         <th>Nombres y Apellidos</th>
+        <th class="text-center">Nivel</th>
         <th class="text-center">Grado y Seccion</th>
-        <th class="text-center">Asistencias</th>
+        <!--<th class="text-center">Asistencias</th>-->
         <th class="text-center">Faltas</th>
         <th class="text-center">Total</th>
         <th class="text-center">Detalle</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td class="text-center">5to B</td>
-        <td></td>
-            <!--<td class="text-center">[[ student.Assistance[1].Total ]] </td>
+      <tr v-for="student in listStudents" :key="student.id">
+        <td>{{ student.dni }}</td>
+        <td>{{ student.name + ' ' + student.last_name }} </td>
+        <td class="text-center">{{ student.Classroom.degree.toUpperCase() }}</td>
+        <td class="text-center">{{ student.Classroom.number + ' ' + student.Classroom.section }}</td>
+        <td class="text-center">{{ student.Assistance[0].Total }} </td>
+        <!--td class="text-center">{{ student.Assistance[1].Total }}</td>-->
           <td class="text-center">[[ student.Assistance[0].Total + student.Assistance[1].Total ]]</td>
-            !-->
         <td class="text-center">
           <a href="#" class="auxiliar-assistance__detail">Detalle</a>
         </td>
       </tr>
     </tbody>
   </table>
+  <div class="text-center" v-if="listStudents.length === 0 &&  !isLoading">
+    <p>No se encontraron Alumnos</p>
+  </div>
+  <div v-if="isLoading" class="spinner-border text-primary" role="status">
+    <span class="sr-only text-center">Loading...</span>
+  </div>
+  </div>
 </template>
 
 <script>
   export default {
-    name: 'AuxiliarTableAssistance'
+    name: 'AuxiliarTableAssistance',
+    props: {
+      listStudents: Array
+    },
+    computed: {
+      isLoading() {
+        return this.$store.state.auxiliar.isLoading
+      }
+    }
   }
 </script>
 
