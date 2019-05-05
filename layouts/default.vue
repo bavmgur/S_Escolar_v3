@@ -1,5 +1,6 @@
 <template>
   <div class="portal">
+    <vue-snotify></vue-snotify>
     <Menu /> 
     <div class="main">
       <div class="container-fluid">
