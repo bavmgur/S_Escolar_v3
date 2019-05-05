@@ -3,7 +3,6 @@ export const state = () => ({
   isLoading: false
 })
 
-
 export const mutations = {
   SET_LIST_STUDENTS(state, students) {
     state.listStudents = students
