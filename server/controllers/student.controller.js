@@ -50,6 +50,14 @@ async function getAllStudents(req, res) {
         .catch(err => {
             if (err) throw err
         })
+
+    if (!students) {
+        return res.status(404).json({
+            ok: false,
+            message: 'No existen datos para esta busqueda'
+        })
+    }
+
     students.map(item => {
         for (e in item.Assistance) {
             item.Assistance[e].state = item.Assistance[e].state == 1 ? 'Asistio' : 'Falto'
