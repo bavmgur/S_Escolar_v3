@@ -23,6 +23,7 @@
         "nuxt": "^2.6.3",
         "sequelize": "^5.2.12",
         "vue-airbnb-style-datepicker": "^2.7.1",
+        "vue-snotify": "^3.2.1",
         "whatwg-fetch": "^3.0.0"
     },
     "devDependencies": {

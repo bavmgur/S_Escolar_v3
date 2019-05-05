@@ -11,10 +11,10 @@
     <div class="auxiliar-assistance__assistance pt-4">
       <h4 class="text-center mb-5 text-uppercase">Lista de Alumnos</h4>
       <div class="text-center">
-        <div class="spinner-border text-primary" role="status">
+        <div v-if="listStudents.listStudents === 0" class="spinner-border text-primary" role="status">
           <span class="sr-only text-center">Loading...</span>
         </div>
-        <!--Aqui viene la tabla -->
+        <AuxiliarTableAssistance v-else :listStudents="listStudents" />
       </div>
     </div>
   </div>
@@ -26,10 +26,20 @@ import AuxiliarSearchAssistance from '../../components/auxliar/AuxliarSearchAssi
 import AuxiliarTableAssistance from '../../components/auxliar/AuxliarTableAssistance'
 
 export default {
+  name: 'AuxliarAssistancePage',
   components: {
     AuxiliarFormAsistance,
     AuxiliarSearchAssistance,
     AuxiliarTableAssistance
+  },
+  computed: {
+    listStudents() {
+      return this.$store.state.auxiliar.listStudents
+    }
+  },
+  async fetch({ store, $axios }) {
+    const response = await $axios.get('api/student')
+    store.commit('auxiliar/SET_LIST_STUDENTS', response.data)
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <form action class="pt-4 auxiliar-assistance__form">
+  <div action class="pt-4 auxiliar-assistance__form">
     <div class="container-fluid">
       <div class="row">
         <div class="col">
@@ -13,16 +13,16 @@
                     type="text"
                     id="datepicker-trigger"
                     placeholder="Selecciona un rango de fecha"
-                    :value="formatDates(dateOne, dateTwo)"
+                    :value="formatDates(dateInitial, dateFinal)"
                   >
                   <AirbnbStyleDatepicker
                     :trigger-element-id="'datepicker-trigger'"
                     :mode="'range'"
                     :fullscreen-mobile="true"
-                    :date-one="dateOne"
-                    :date-two="dateTwo"
-                    @date-one-selected="val => { dateOne = val }"
-                    @date-two-selected="val => { dateTwo = val }"
+                    :date-one="dateInitial"
+                    :date-two="dateFinal"
+                    @date-one-selected="val => { dateInitial = val }"
+                    @date-two-selected="val => { dateFinal = val }"
                   />
                 </div>
               </div>
@@ -44,11 +44,11 @@
       </div>
       <div class="row">
         <div class="col text-right">
-          <button type="submit">Aplicar</button>
+          <button @click.prevent="sendFiltersListAssistance" type="button">Aplicar</button>
         </div>
       </div>
     </div>
-  </form>
+  </div>
 </template>
 
 <script>
@@ -59,8 +59,8 @@ export default {
   data() {
     return {
       dateFormat: 'D MMM',
-      dateOne: '',
-      dateTwo: ''
+      dateInitial: '',
+      dateFinal: ''
     }
   },
   methods: {
@@ -73,6 +73,17 @@ export default {
         formattedDates += ' - ' + format(dateTwo, this.dateFormat)
       }
       return formattedDates
+    },
+    sendFiltersListAssistance() {
+      const { dateInitial, dateFinal } = this
+      if (!dateInitial && !dateFinal) {
+        this.$snotify.error('NECISTA APLICAR FILTROS PARA CONTINUAR', {
+          showProgressBar: false,
+          closeOnClick: false,
+        })
+      } else {
+        this.$store.dispatch('auxiliar/getListStudents', { dateInitial, dateFinal, snotify: this.$snotify })
+      }
     }
   }
 }

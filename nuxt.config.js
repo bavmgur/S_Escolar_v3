@@ -52,7 +52,8 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/vue-airbnb-style-datepicker'
+    '~/plugins/vue-airbnb-style-datepicker',
+    '~/plugins/vue-snotify'
   ],
 
   /*
