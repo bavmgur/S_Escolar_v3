@@ -1,6 +1,6 @@
 <template>
   <div class="auxiliar__modal-detail-asistance" :class="{ 'open': isOpenModalDetailAssistance }">
-    <div class="modal__back"></div>
+    <div class="modal__back" @click="hideModalDetailAssistance"></div>
     <div class="modal__content">
       <div class="container-fluid py-4">
         <div class="row">
@@ -153,8 +153,8 @@ label, span {
   left: 0;
   z-index: 100;
   transition: all .5s;
-  //opacity: 0;
-  //visibility: hidden;
+  opacity: 0;
+  visibility: hidden;
   cursor: pointer;
 }
 
@@ -169,8 +169,8 @@ label, span {
   box-shadow: 0 0 .3rem rgba(0, 0, 0, 0.4);
   border-radius: .3rem;
   transition: all .5s;
-  //opacity: 0;
-  //visibility: hidden;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .modal__data {

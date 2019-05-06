@@ -15,7 +15,11 @@
         <div v-if="listStudents.listStudents === 0" class="spinner-border text-primary" role="status">
           <span class="sr-only text-center">Loading...</span>
         </div>
-        <AuxiliarTableAssistance v-else :listStudents="listStudents" />
+        <AuxiliarTableAssistance 
+          v-else 
+          :listStudents="listStudents" 
+          @showModalDetailAssistance="showOrHideModalDetailAssistance"
+        />
       </div>
     </div>
     <ModalAuxiliarCallAssistance 
