@@ -22,6 +22,10 @@
       :isOpenModalCallAssistance="isOpenModalCallAssistance" 
       @hideModal="hideModalCallAssistance"
     />
+    <ModalAuxiliarDetailAssistance 
+      @hideModal="hideModalDetilAssistance"
+      :isOpenModalDetailAssistance="isOpenModalDetailAssistance"
+    />
   </div>
 </template>
 
@@ -29,7 +33,8 @@
 import AuxiliarFormAsistance from '../../components/auxliar/AuxliarFormAsistance'
 import AuxiliarSearchAssistance from '../../components/auxliar/AuxliarSearchAssistance'
 import AuxiliarTableAssistance from '../../components/auxliar/AuxliarTableAssistance'
-import ModalAuxiliarCallAssistance from '../../components//modals/AuxiliarModalCallAssistance'
+import ModalAuxiliarCallAssistance from '../../components/modals/AuxiliarModalCallAssistance'
+import ModalAuxiliarDetailAssistance from '../../components/modals/AuxiliarModalDetailAssistance'
 
 export default {
   name: 'AuxliarAssistancePage',
@@ -37,11 +42,13 @@ export default {
     AuxiliarFormAsistance,
     AuxiliarSearchAssistance,
     AuxiliarTableAssistance,
-    ModalAuxiliarCallAssistance
+    ModalAuxiliarCallAssistance,
+    ModalAuxiliarDetailAssistance
   },
   data() {
     return {
-      isOpenModalCallAssistance: false
+      isOpenModalCallAssistance: false,
+      isOpenModalDetailAssistance: false
     }
   },
   computed: {
@@ -53,8 +60,14 @@ export default {
     showOrHideModalCallAssistance() {
       this.isOpenModalCallAssistance = !this.isOpenModalCallAssistance
     },
+    showOrHideModalDetailAssistance() {
+      this.isOpenModalDetailAssistance = !this.isOpenModalDetailAssistance
+    },
     hideModalCallAssistance() {
       this.showOrHideModalCallAssistance()
+    },
+    hideModalDetilAssistance() {
+      this.showOrHideModalDetailAssistance()
     }
   },
   async fetch({ store, $axios }) {
