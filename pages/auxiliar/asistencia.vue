@@ -58,7 +58,7 @@ export default {
   computed: {
     listStudents() {
       return this.$store.state.auxiliar.listStudents
-    }
+    },
   },
   methods: {
     showOrHideModalCallAssistance() {

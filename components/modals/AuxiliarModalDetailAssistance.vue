@@ -63,15 +63,15 @@
                   <th>Fecha</th>
                   <th class="text-center">Hora</th>
                   <th class="text-center">Puntualidad</th>
-                  <th class="text-center">Asistencias</th>
+                  <th class="text-center">Asistencia</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="i in 4" :key="i">
-                  <td>2019-05-06</td>
-                  <td class="text-center">20:00</td>
-                  <td class="text-center">5to</td>
-                  <td class="text-center">B</td>
+                <tr v-for="(detail, index) in listdetail" :key="index">
+                  <td>{{ detail.date}}</td>
+                  <td class="text-center">{{ detail.hour }}</td>
+                  <td class="text-center">{{ detail.arrived }}</td>
+                  <td class="text-center">{{ detail.state }}</td>
                 </tr>
               </tbody>
             </table>
@@ -100,6 +100,17 @@ export default {
       dateFormat: 'D MMM',
       dateInitial: '',
       dateFinal: ''
+    }
+  },
+  computed: {
+    detailStudent() {
+      return this.$store.state.auxiliar.DetailAssitanceByStudent
+    },
+    listdetail() {
+      return this.detailStudent ? this.detailStudent.assistances.rows : []
+    },
+    isLoadingDetailByStudent() {
+      return this.$store.state.auxiliar.isLoadingDetailByStudent
     }
   },
   methods: {

@@ -23,7 +23,7 @@
         <!--td class="text-center">{{ student.Assistance[1].Total }}</td>-->
           <td class="text-center">[[ student.Assistance[0].Total + student.Assistance[1].Total ]]</td>
         <td class="text-center">
-          <a @click.prevent="showModalDetailAssistance" href="#" class="auxiliar-assistance__detail">Detalle</a>
+          <a @click.prevent="showModalDetailAssistance(student.id)" href="#" class="auxiliar-assistance__detail">Detalle</a>
         </td>
       </tr>
     </tbody>
@@ -49,7 +49,8 @@
       }
     },
     methods: {
-      showModalDetailAssistance() {
+      showModalDetailAssistance(codeStudent) {
+        this.$store.dispatch('auxiliar/getListDetailStudentById', { codeStudent })
         this.$emit('showModalDetailAssistance')
       }
     }

@@ -1,14 +1,22 @@
 export const state = () => ({
   listStudents: [],
-  isLoading: false
+  DetailAssitanceByStudent: null,
+  isLoading: false,
+  isLoadingDetailByStudent: false
 })
 
 export const mutations = {
   SET_LIST_STUDENTS(state, students) {
     state.listStudents = students
   },
+  SET_DETAIL_STUDENT_BY_ID(state, detail) {
+    state.DetailAssitanceByStudent = detail
+  },
   CHANGE_STATE_LOADING(state) {
     state.isLoading = !state.isLoading
+  },
+  CHANGE_STATE_LOADING_DETAIL(state) {
+    state.isLoadingDetailByStudent = !state.isLoadingDetailByStudent
   }
 }
 
@@ -23,5 +31,13 @@ export const actions = {
       closeOnClick: false,
     })
     commit('CHANGE_STATE_LOADING')
+  },
+  async getListDetailStudentById({ commit }, payload) {
+    commit('CHANGE_STATE_LOADING_DETAIL')
+    const { codeStudent } = payload
+    const response = await this.$axios.get(`api/assistance?cod_alumno=${codeStudent}`)
+    console.log(response.data)
+    commit('SET_DETAIL_STUDENT_BY_ID', response.data)
+    commit('CHANGE_STATE_LOADING_DETAIL')
   }
 }
