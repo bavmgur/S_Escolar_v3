@@ -38,6 +38,7 @@ import AuxiliarFormAsistance from '../../components/auxliar/AuxliarFormAsistance
 import AuxiliarSearchAssistance from '../../components/auxliar/AuxliarSearchAssistance'
 import AuxiliarTableAssistance from '../../components/auxliar/AuxliarTableAssistance'
 import ModalAuxiliarCallAssistance from '../../components/modals/AuxiliarModalCallAssistance'
+
 import ModalAuxiliarDetailAssistance from '../../components/modals/AuxiliarModalDetailAssistance'
 
 export default {
