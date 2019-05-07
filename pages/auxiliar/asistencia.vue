@@ -75,6 +75,7 @@ export default {
     }
   },
   async fetch({ store, $axios }) {
+    
     const response = await $axios.get('api/student')
     store.commit('auxiliar/SET_LIST_STUDENTS', response.data)
   }
