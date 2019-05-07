@@ -107,7 +107,7 @@ export default {
       return this.$store.state.auxiliar.DetailAssitanceByStudent
     },
     listdetail() {
-      return this.detailStudent ? this.detailStudent.assistances.rows : []
+      return this.detailStudent ? this.detailStudent.resp.rows : []
     },
     isLoadingDetailByStudent() {
       return this.$store.state.auxiliar.isLoadingDetailByStudent
