@@ -23,7 +23,7 @@
         <!--td class="text-center">{{ student.Assistance[1].Total }}</td>-->
           <td class="text-center">[[ student.Assistance[0].Total + student.Assistance[1].Total ]]</td>
         <td class="text-center">
-          <a href="#" class="auxiliar-assistance__detail">Detalle</a>
+          <a @click.prevent="showModalDetailAssistance" href="#" class="auxiliar-assistance__detail">Detalle</a>
         </td>
       </tr>
     </tbody>
@@ -46,6 +46,11 @@
     computed: {
       isLoading() {
         return this.$store.state.auxiliar.isLoading
+      }
+    },
+    methods: {
+      showModalDetailAssistance() {
+        this.$emit('showModalDetailAssistance')
       }
     }
   }
