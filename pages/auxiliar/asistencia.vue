@@ -38,6 +38,7 @@ import AuxiliarFormAsistance from '../../components/auxliar/AuxliarFormAsistance
 import AuxiliarSearchAssistance from '../../components/auxliar/AuxliarSearchAssistance'
 import AuxiliarTableAssistance from '../../components/auxliar/AuxliarTableAssistance'
 import ModalAuxiliarCallAssistance from '../../components/modals/AuxiliarModalCallAssistance'
+
 import ModalAuxiliarDetailAssistance from '../../components/modals/AuxiliarModalDetailAssistance'
 
 export default {
@@ -58,7 +59,7 @@ export default {
   computed: {
     listStudents() {
       return this.$store.state.auxiliar.listStudents
-    }
+    },
   },
   methods: {
     showOrHideModalCallAssistance() {
@@ -75,6 +76,7 @@ export default {
     }
   },
   async fetch({ store, $axios }) {
+    
     const response = await $axios.get('api/student')
     store.commit('auxiliar/SET_LIST_STUDENTS', response.data)
   }
