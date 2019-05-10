@@ -2,31 +2,37 @@
   <div class="auxiliar-assistance mb-3">
     <div class="auxiliar-assistance__header">
       <div class="auxiliar-assistance__test">
-        <AuxiliarFormAsistance />
+        <AuxiliarFormAsistance/>
       </div>
     </div>
     <div class="auxiliar-assistance__search">
-     <AuxiliarSearchAssistance />
+      <AuxiliarSearchAssistance/>
     </div>
     <div class="auxiliar-assistance__assistance pt-4">
       <h4 class="text-center mb-4 text-uppercase">Lista de Alumnos</h4>
-      <div class="text-center mb-4"><button class="button" @click="showOrHideModalCallAssistance">LLAMAR ASISTENCIA</button></div>
+      <div class="text-center mb-4">
+        <button class="button" @click="showOrHideModalCallAssistance">LLAMAR ASISTENCIA</button>
+      </div>
       <div class="text-center">
-        <div v-if="listStudents.listStudents === 0" class="spinner-border text-primary" role="status">
+        <div
+          v-if="listStudents.listStudents === 0"
+          class="spinner-border text-primary"
+          role="status"
+        >
           <span class="sr-only text-center">Loading...</span>
         </div>
-        <AuxiliarTableAssistance 
-          v-else 
-          :listStudents="listStudents" 
+        <AuxiliarTableAssistance
+          v-else
+          :listStudents="listStudents"
           @showModalDetailAssistance="showOrHideModalDetailAssistance"
         />
       </div>
     </div>
-    <ModalAuxiliarCallAssistance 
-      :isOpenModalCallAssistance="isOpenModalCallAssistance" 
+    <ModalAuxiliarCallAssistance
+      :isOpenModalCallAssistance="isOpenModalCallAssistance"
       @hideModal="hideModalCallAssistance"
     />
-    <ModalAuxiliarDetailAssistance 
+    <ModalAuxiliarDetailAssistance
       @hideModal="hideModalDetilAssistance"
       :isOpenModalDetailAssistance="isOpenModalDetailAssistance"
     />
@@ -34,13 +40,13 @@
 </template>
 
 <script>
-import AuxiliarFormAsistance from '../../components/auxliar/AuxliarFormAsistance'
-import AuxiliarSearchAssistance from '../../components/auxliar/AuxliarSearchAssistance'
-import AuxiliarTableAssistance from '../../components/auxliar/AuxliarTableAssistance'
-import ModalAuxiliarCallAssistance from '../../components/modals/AuxiliarModalCallAssistance'
-import ModalAuxiliarDetailAssistance from '../../components/modals/AuxiliarModalDetailAssistance'
+import AuxiliarFormAsistance from "../../components/auxliar/AuxliarFormAsistance";
+import AuxiliarSearchAssistance from "../../components/auxliar/AuxliarSearchAssistance";
+import AuxiliarTableAssistance from "../../components/auxliar/AuxliarTableAssistance";
+import ModalAuxiliarCallAssistance from "../../components/modals/AuxiliarModalCallAssistance";
+import ModalAuxiliarDetailAssistance from "../../components/modals/AuxiliarModalDetailAssistance";
 export default {
-  name: 'AuxliarAssistancePage',
+  name: "AuxliarAssistancePage",
   components: {
     AuxiliarFormAsistance,
     AuxiliarSearchAssistance,
@@ -52,33 +58,32 @@ export default {
     return {
       isOpenModalCallAssistance: false,
       isOpenModalDetailAssistance: false
-    }
+    };
   },
   computed: {
     listStudents() {
-      return this.$store.state.auxiliar.listStudents
-    },
+      return this.$store.state.auxiliar.listStudents;
+    }
   },
   methods: {
     showOrHideModalCallAssistance() {
-      this.isOpenModalCallAssistance = !this.isOpenModalCallAssistance
+      this.isOpenModalCallAssistance = !this.isOpenModalCallAssistance;
     },
     showOrHideModalDetailAssistance() {
-      this.isOpenModalDetailAssistance = !this.isOpenModalDetailAssistance
+      this.isOpenModalDetailAssistance = !this.isOpenModalDetailAssistance;
     },
     hideModalCallAssistance() {
-      this.showOrHideModalCallAssistance()
+      this.showOrHideModalCallAssistance();
     },
     hideModalDetilAssistance() {
-      this.showOrHideModalDetailAssistance()
+      this.showOrHideModalDetailAssistance();
     }
   },
   async fetch({ store, $axios }) {
-    
-    const response = await $axios.get('api/student')
-    store.commit('auxiliar/SET_LIST_STUDENTS', response.data)
+    const response = await $axios.get("api/student");
+    store.commit("auxiliar/SET_LIST_STUDENTS", response.data);
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
