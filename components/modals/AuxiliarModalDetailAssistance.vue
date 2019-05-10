@@ -46,9 +46,9 @@
             <div class="form-group">
               <div class="row align-items-center">
                 <label for="" class="col-4 font-weight-bold">FILTRAR POR:</label>
-                <input type="checkbox" name="" id="" class="mr-1">
+                <input type="radio" id="" class="mr-1" v-model="state" value="1">
                 <label for="" class="mr-3">ASISTENCIAS</label>
-                <input type="checkbox" name="" id="" class="mr-1">
+                <input type="radio" id="" class="mr-1" v-model="state" value="0">
                 <label for="" class="mr-3">FALTAS</label>
               </div>
             </div>
@@ -104,7 +104,8 @@ export default {
     return {
       dateFormat: 'D MMM',
       dateInitial: '',
-      dateFinal: ''
+      dateFinal: '',
+      state: null,
     }
   },
   computed: {
@@ -133,7 +134,17 @@ export default {
       this.$emit('hideModal')
     },
     SendFilterDetail() {
-      alert('Hola mundo')
+      const { dateInitial, dateFinal, state } = this
+      if(dateInitial && this.dateFinal || this.state) {
+        this.$store.dispatch('auxiliar/getListDetailWithFilter', { 
+          dateInitial, 
+          dateFinal, 
+          state, 
+          codeStudent: this.detailStudent.resp.StudentiD
+        })
+      } else {
+        alert('No se aplico filtros')
+      }
     }
   }
 }
