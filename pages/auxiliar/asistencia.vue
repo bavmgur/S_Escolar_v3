@@ -38,9 +38,7 @@ import AuxiliarFormAsistance from '../../components/auxliar/AuxliarFormAsistance
 import AuxiliarSearchAssistance from '../../components/auxliar/AuxliarSearchAssistance'
 import AuxiliarTableAssistance from '../../components/auxliar/AuxliarTableAssistance'
 import ModalAuxiliarCallAssistance from '../../components/modals/AuxiliarModalCallAssistance'
-
 import ModalAuxiliarDetailAssistance from '../../components/modals/AuxiliarModalDetailAssistance'
-
 export default {
   name: 'AuxliarAssistancePage',
   components: {
@@ -89,30 +87,24 @@ $color-back-1: #f6f7fb;
 $color-back-2: #eee;
 $color-black-1: #000;
 $color-primary-1: #007bff;
-
 .auxiliar-assistance {
   background-color: $color-white;
-
   &__header {
     height: 9.5rem;
     padding: 1rem 1rem 0 1rem;
   }
-
   &__test {
     border-bottom: 0.1rem solid $color-back-2;
     background-color: $color-white;
     height: 100%;
   }
-
   &__body {
   }
-
   &__search {
     padding: 2rem 1rem;
     border-bottom: 0.1rem solid $color-back-2;
   }
 }
-
 .button {
   background-color: $color-primary-1;
   color: $color-white;
@@ -121,7 +113,6 @@ $color-primary-1: #007bff;
   border: none;
   font-size: 1.2rem;
 }
-
 h4 {
   font-size: 2rem;
 }
