@@ -54,7 +54,12 @@
             </div>
           </div>
         </div>
-        <div class="row mt-5">
+        <div class="row mt-3">
+          <div class="col text-center">
+            <button class="button" @click="SendFilterDetail">FILTRAR</button>
+          </div>
+        </div>
+        <div class="row mt-3">
           <div class="col">
             <h4 class="text-center mb-5">DETALLE DE ASISTENCIA</h4>
             <table class="mb-5  table table-hover auxiliar-assistance__table">
@@ -126,6 +131,9 @@ export default {
     },
     hideModalDetailAssistance() {
       this.$emit('hideModal')
+    },
+    SendFilterDetail() {
+      alert('Hola mundo')
     }
   }
 }
