@@ -6,7 +6,7 @@ const LoginRoutes = require('./login.routes')
 const SecretaryRoutes = require('./secretary.routes')
 const AssistanceRoutes = require('./assistance.routes')
 
-module.exports = app => {
+module.exports = (app) => {
     // Aqui van las rutas para exportar
     app.use('/api/student', StudentRoutes)
     app.use('/api/classroom', ClassroomRoutes)
@@ -14,5 +14,5 @@ module.exports = app => {
     app.use('/api/secretary', SecretaryRoutes)
     app.use('/api/assistance', AssistanceRoutes)
 
-    app.use('api/login', LoginRoutes)
+    app.use('/api/login', LoginRoutes)
 }

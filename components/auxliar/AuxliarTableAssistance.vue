@@ -20,7 +20,7 @@
           <td class="text-center">{{ student.Classroom.degree.toUpperCase() }}</td>
           <td class="text-center">{{ student.Classroom.number + ' ' + student.Classroom.section }}</td>
           <td class="text-center">{{ student.Assistance[0].Total }}</td>
-          td class="text-center">{{ student.Assistance[1].Total }}</td>
+          <!-- <td class="text-center">{{ student.Assistance[1].Total }}</td> -->
           <!-- <td class="text-center">{{ student.Assistance[0].Total + student.Assistance[1].Total }}</td> -->
           <td class="text-center">
             <a

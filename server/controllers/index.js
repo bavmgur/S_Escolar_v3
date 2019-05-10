@@ -3,6 +3,7 @@ const HomeController = require('./home.controller')
 const SchoolYearController = require('./schoolyear.controller')
 const StudentController = require('./student.controller')
 const AssistanceController = require('./assistance.controller')
+const LoginController = require('./login.controller')
 
 
 module.exports = {
@@ -10,5 +11,6 @@ module.exports = {
     HomeController,
     SchoolYearController,
     StudentController,
-    AssistanceController
+    AssistanceController,
+    LoginController
 }

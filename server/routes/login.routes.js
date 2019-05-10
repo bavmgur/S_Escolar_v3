@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
-const { SchoolYearController } = require('../controllers/index')
+const { LoginController } = require('../controllers/index')
 
-router.get('/', (req, res) => res.render('login'))
+router.post('/', LoginController.login)
     // router.post('/', SchoolYearController.createSchoolYear)
     // router.delete('/:id', SchoolYearController.deleteSchoolYear)
 

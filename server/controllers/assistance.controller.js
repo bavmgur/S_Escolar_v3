@@ -100,6 +100,8 @@ async function getAllAssistancesByStudent(req, res) {
         respHandler.notFound(res)
     }
 
+    assistances['StudentiD'] = query.cod_alumno
+
     respHandler.success(res, assistances)
 }
 

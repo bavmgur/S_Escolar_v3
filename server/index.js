@@ -1,13 +1,10 @@
-const express = require('express')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 
 const conn = require('./models/index').sequelize
 
 
-const app = express()
-
-require('./app')(app)
+const app = require('./app')()
 
 
 
